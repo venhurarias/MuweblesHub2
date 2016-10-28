@@ -72,7 +72,7 @@
         android:id="@+id/price" />
 
     <Button
-        android:text="Button"
+        android:text="Add Item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add_item"
@@ -99,15 +99,6 @@
         android:layout_alignLeft="@+id/textView13"
         android:layout_alignStart="@+id/textView13" />
 
-    <Button
-        android:text="Choose Image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonChoose"
-        android:layout_below="@+id/price"
-        android:layout_alignLeft="@+id/add_item"
-        android:layout_alignStart="@+id/add_item" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -127,5 +118,14 @@
         android:layout_alignLeft="@+id/textView12"
         android:layout_alignStart="@+id/textView12"
         android:id="@+id/imageView" />
+
+    <Button
+        android:text="Choose Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonChoose"
+        android:layout_below="@+id/price"
+        android:layout_toRightOf="@+id/add_item"
+        android:layout_toEndOf="@+id/add_item" />
 
 </RelativeLayout>

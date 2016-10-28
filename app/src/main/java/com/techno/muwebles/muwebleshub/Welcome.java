@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class Welcome extends AppCompatActivity implements AsyncResponse, AdapterView.OnItemClickListener {
 
-    Button show, logout, post_item;
+
     RequestQueue requestQueue;
     String rownumberurl = "http://192.168.254.105/webservice/rownumberproduct.php";
     String showUrl = "http://192.168.254.105/webservice/show.php";

@@ -22,7 +22,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/dName"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         android:layout_below="@+id/dName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:text="Price: "
@@ -51,7 +51,7 @@
         android:layout_below="@+id/textView14"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:text="TextView"
@@ -61,7 +61,7 @@
         android:layout_below="@+id/textView16"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:text="Description: "
@@ -72,7 +72,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:text="TextView"
@@ -82,7 +82,7 @@
         android:layout_below="@+id/dType"
         android:layout_toRightOf="@+id/textView15"
         android:layout_toEndOf="@+id/textView15"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:text="TextView"
@@ -93,6 +93,16 @@
         android:layout_alignBottom="@+id/textView14"
         android:layout_toRightOf="@+id/textView14"
         android:layout_toEndOf="@+id/textView14"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
+
+    <Button
+        android:text="Buy This Product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/dImage"
+        android:layout_alignRight="@+id/textView16"
+        android:layout_alignEnd="@+id/textView16" />
 </RelativeLayout>
 </ScrollView>
