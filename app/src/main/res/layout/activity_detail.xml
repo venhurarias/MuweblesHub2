@@ -99,7 +99,7 @@
         android:text="Buy This Product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/buy"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/dImage"
         android:layout_alignRight="@+id/textView16"

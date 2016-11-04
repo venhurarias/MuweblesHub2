@@ -242,11 +242,14 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Product selectedProduct = productList.get(position);
         Intent in= new Intent(Welcome.this,DetailActivity.class);
+
+        in.putExtra("item_id", selectedProduct.item_id);
         in.putExtra("name", selectedProduct.name);
         in.putExtra("type", selectedProduct.type);
         in.putExtra("price", selectedProduct.price);
         in.putExtra("description", selectedProduct.description);
         in.putExtra("image", selectedProduct.path);
+        in.putExtra("email", getIntent().getStringExtra("email"));
 
         startActivity(in);
     }

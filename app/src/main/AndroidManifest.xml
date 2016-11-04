@@ -30,6 +30,7 @@
         <activity android:name=".Welcome" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".NewItem" />
+        <activity android:name=".QuantityActivity" />
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -39,6 +40,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".SaleConfirm"></activity>
     </application>
 
 </manifest>
