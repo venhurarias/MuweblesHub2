@@ -111,7 +111,7 @@ public class SaleConfirm extends AppCompatActivity  {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String,String> parameters = new HashMap<String, String>();
                             parameters.put("item_id","asdf");
-                            parameters.put("contact","asdf");
+                            parameters.put("contact",getIntent().getStringExtra("contact"));
                             parameters.put("email","asdf");
                             parameters.put("address","asdf");
                             parameters.put("first","asdf");

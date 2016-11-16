@@ -137,7 +137,7 @@ public class QuantityActivity extends AppCompatActivity {
                                     final String last = student.getString("last");
                                     Intent j = new Intent(getApplicationContext(),SaleConfirm.class);
                                     j.putExtra("total", total.getText().toString());
-                                    j.putExtra("quantity", squantity.getText().toString());
+                                    j.putExtra("quantity", quantity.getText().toString());
                                     j.putExtra("item_id",item_id);
                                     j.putExtra("contact",contact);
                                     j.putExtra("email",email);
