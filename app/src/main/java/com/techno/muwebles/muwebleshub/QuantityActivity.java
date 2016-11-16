@@ -10,11 +10,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by FArias on 11/4/2016.
@@ -24,6 +40,8 @@ public class QuantityActivity extends AppCompatActivity {
     EditText quantity;
     TextView price, total, squantity;
     Button proceed;
+    private RequestQueue requestQueue;
+    private static final String URL = "http://192.168.254.105/webservice/show.php";
 
 
     /**
@@ -37,6 +55,7 @@ public class QuantityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quantity_activity);
 
+        requestQueue = Volley.newRequestQueue(this);
         quantity = (EditText) findViewById(R.id.quantity);
         proceed = (Button) findViewById(R.id.proceed);
         price = (TextView) findViewById(R.id.price);
@@ -99,11 +118,57 @@ public class QuantityActivity extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),SaleConfirm.class);
-                i.putExtra("total", total.getText().toString());
-                i.putExtra("quantity", squantity.getText().toString());
-                i.putExtra("item_id",item_id);
-                startActivity(i);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                        URL, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println(response.toString());
+                        try {
+                            JSONArray students = response.getJSONArray("list");
+                            for (int i = 0; i < students.length(); i++) {
+                                JSONObject student = students.getJSONObject(i);
+                                if(student.getString("email").equals("arias.ven@gmail.com")) {
+
+
+                                    final String contact = student.getString("contact");
+                                    final String email = student.getString("email");
+                                    final String address = student.getString("address");
+                                    final String first = student.getString("first");
+                                    final String last = student.getString("last");
+                                    Intent j = new Intent(getApplicationContext(),SaleConfirm.class);
+                                    j.putExtra("total", total.getText().toString());
+                                    j.putExtra("quantity", squantity.getText().toString());
+                                    j.putExtra("item_id",item_id);
+                                    j.putExtra("contact",contact);
+                                    j.putExtra("email",email);
+                                    j.putExtra("address",address);
+                                    j.putExtra("first",first);
+                                    j.putExtra("last",last);
+                                    startActivity(j);
+
+
+
+
+
+
+                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.append(error.getMessage());
+
+                    }
+                });
+                requestQueue.add(jsonObjectRequest);
+               //
 
             }
         });

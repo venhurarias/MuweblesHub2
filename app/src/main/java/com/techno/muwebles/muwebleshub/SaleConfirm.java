@@ -52,7 +52,6 @@ public class SaleConfirm extends AppCompatActivity  {
     private RequestQueue requestQueue;
     private RequestQueue requestQueue1;
     private Button yes, no;
-    private static final String URL = "http://192.168.254.105/webservice/show.php";
     private static final String URL1 = "http://192.168.254.105/webservice/sales.php";
     private StringRequest request;
     private StringRequest request1;
@@ -78,88 +77,52 @@ public class SaleConfirm extends AppCompatActivity  {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                        URL, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        System.out.println(response.toString());
-                        try {
-                            JSONArray students = response.getJSONArray("list");
-                            for (int i = 0; i < students.length(); i++) {
-                                JSONObject student = students.getJSONObject(i);
-                                if(student.getString("email").equals("arias.ven@gmail.com")) {
 
 
-                                    final String contact = student.getString("contact");
-                                    final String email = student.getString("email");
-                                    final String address = student.getString("address");
-                                    final String first = student.getString("first");
-                                    final String last = student.getString("last");
-                                    ///hahahhahah
-                                    request = new StringRequest(Request.Method.POST, URL1, new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-                                            try {
-                                                JSONObject jsonObject= new JSONObject(response);
-                                                if(jsonObject.names().get(0).equals("Success")){
-                                                    Toast.makeText(getApplicationContext(),"SUCCESS "+jsonObject.getString("Success"),Toast.LENGTH_SHORT).show();
-                                                    Intent i = new Intent(SaleConfirm.this,Welcome.class);
-                                                    startActivity(i);
-                                                }else{
-                                                    Toast.makeText(getApplicationContext(),"Error "+jsonObject.getString("Error"),Toast.LENGTH_SHORT).show();
-                                                }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        }
-                                    }, new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-
-                                        }
-                                    }){
-                                        @Override
-                                        protected Map<String, String> getParams() throws AuthFailureError {
-                                            HashMap<String,String> hashMap = new HashMap<String, String>();
-
-                                            hashMap.put("contact",contact);
-                                            hashMap.put("email",email);
-                                            hashMap.put("address",address);
-                                            hashMap.put("first",first);
-                                            hashMap.put("last",last);
-                                            hashMap.put("number",quantity);
-                                            hashMap.put("pricetotal",total);
-                                            return hashMap;
-                                        }
-                                    };
-                                    requestQueue.add(request);
-
-
-                                    //hahahhahav
-
-
-
-
+                {
+                    StringRequest request= new StringRequest(Request.Method.POST, URL1, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject= new JSONObject(response);
+                                if(jsonObject.names().get(0).equals("success")){
+                                    Toast.makeText(getApplicationContext(),"SUCCESS "+jsonObject.getString("success"),Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                }else{
+                                    if(jsonObject.names().get(0).equals("error")){
+                                        Toast.makeText(getApplicationContext(),"Error "+jsonObject.getString("error"),Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+                                    }
 
                                 }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.append(error.getMessage());
-
-                    }
-                });
-                requestQueue.add(jsonObjectRequest);
-
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String,String> parameters = new HashMap<String, String>();
+                            parameters.put("item_id","asdf");
+                            parameters.put("contact","asdf");
+                            parameters.put("email","asdf");
+                            parameters.put("address","asdf");
+                            parameters.put("first","asdf");
+                            parameters.put("last","asdf");
+                            parameters.put("number",getIntent().getStringExtra("quantity"));
+                            parameters.put("pricetotal",getIntent().getStringExtra("total"));
+                            return parameters;
+                        }
+                    };
+                    requestQueue.add(request);
+                }
 
 
             }
