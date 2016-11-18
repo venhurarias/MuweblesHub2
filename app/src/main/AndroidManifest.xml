@@ -41,6 +41,9 @@
 
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".SaleConfirm"></activity>
+        <activity android:name=".MyOrder"></activity>
+        <activity android:name=".BuyerOrder"></activity>
+
     </application>
 
 </manifest>

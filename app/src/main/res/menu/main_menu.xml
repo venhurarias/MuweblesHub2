@@ -12,10 +12,20 @@
             android:orderInCategory="1"
             app:showAsAction="never"
             android:title="Add New Product"/>
+    <item
+        android:id="@+id/my_order"
+        android:orderInCategory="2"
+        app:showAsAction="never"
+        android:title="My Order"/>
+    <item
+        android:id="@+id/buyerorder"
+        android:orderInCategory="3"
+        app:showAsAction="never"
+        android:title="Buyer's Order"/>
 
         <item
             android:id="@+id/menu_logout"
-            android:orderInCategory="2"
+            android:orderInCategory="4"
             app:showAsAction="never"
             android:title="LogOut"/>
 

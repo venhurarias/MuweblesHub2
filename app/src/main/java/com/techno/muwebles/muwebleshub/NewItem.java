@@ -1,157 +1,153 @@
 package com.techno.muwebles.muwebleshub;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
+public class NewItem extends AppCompatActivity implements View.OnClickListener {
 
-public class NewItem extends AppCompatActivity {
-
-    private StringRequest request;
-    RequestQueue requestQueue;
-
-    private Button add_item;
-    private String encoded_string, image;
-    private Bitmap bitmap;
-    private File file;
-    private Uri file_uri;
+    public static final String UPLOAD_URL = "http://192.168.254.101/webservice/items.php";
+    public static final String UPLOAD_KEY = "image";
+    public static final String TAG = "MY MESSAGE";
     private EditText name, type, price, description;
+
+    private int PICK_IMAGE_REQUEST = 1;
+
+    private Button buttonChoose;
+    private Button buttonUpload;
+
+    private ImageView imageView;
+
+    private Bitmap bitmap;
+
+    private Uri filePath;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newitem_activity);
+
+        buttonChoose = (Button) findViewById(R.id.buttonChoose);
+        buttonUpload = (Button) findViewById(R.id.buttonUpload);
         name = (EditText) findViewById(R.id.name);
         type = (EditText) findViewById(R.id.type);
         price = (EditText) findViewById(R.id.price);
         description = (EditText) findViewById(R.id.description);
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
 
 
 
+        imageView = (ImageView) findViewById(R.id.imageView);
 
 
-
-
-
-
-
-        add_item = (Button) findViewById(R.id.add_item);
-        add_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                i.putExtra(MediaStore.EXTRA_OUTPUT, file_uri);
-                startActivityForResult(i, 10);
-            }
-        });
+        buttonUpload.setOnClickListener(this);
+        buttonChoose.setOnClickListener(this);
     }
 
-    private void getFileUri() {
-        final String rownumber=getIntent().getStringExtra("rownumber");
-        image =rownumber +".jpg";
-
-
-
-        file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                + File.separator + image
-        );
-
-        file_uri = Uri.fromFile(file);
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
-        if (requestCode == 10 && resultCode == RESULT_OK) {
-            new Encode_image().execute();
+            filePath = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imageView.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private class Encode_image extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-
-            bitmap = BitmapFactory.decodeFile(file_uri.getPath());
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            bitmap.recycle();
-
-            byte[] array = stream.toByteArray();
-            encoded_string = Base64.encodeToString(array, 0);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-
-            makeRequest();
-        }
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
-    private void makeRequest() {
-        final String email=getIntent().getStringExtra("email");
+    private void uploadImage(){
+        class UploadImage extends AsyncTask<Bitmap,Void,String>{
+            String Sname= name.getText().toString();
+            String Stype= type.getText().toString();
+            String Sprice= price.getText().toString();
+            String Sdescription= description.getText().toString();
+            final String rownumber=getIntent().getStringExtra("rownumber");
+            String image =rownumber +".jpg";
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.254.101/webservice/items.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+            ProgressDialog loading;
+            RequestHandler rh = new RequestHandler();
 
-                    }
-                }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(NewItem.this, "Uploading Image", "Please wait...",true,true);
             }
-        }) {
+
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String,String> map = new HashMap<>();
-                map.put("encoded_string",encoded_string);
-                map.put("image",image);
-                map.put("name",name.getText().toString());
-                map.put("type",type.getText().toString());
-                map.put("price",price.getText().toString());
-                map.put("description",description.getText().toString());
-                map.put("email",email);
-
-                return map;
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
             }
-        };
-        requestQueue.add(request);
+
+            @Override
+            protected String doInBackground(Bitmap... params) {
+                Bitmap bitmap = params[0];
+                String uploadImage = getStringImage(bitmap);
+
+
+                HashMap<String,String> data = new HashMap<>();
+                data.put("encoded_string", uploadImage);
+                data.put("image",image);
+                data.put("name",Sname);
+                data.put("type",Stype);
+                data.put("price",Sprice);
+                data.put("description",Sdescription);
+                data.put("email",getIntent().getStringExtra("email"));
+
+                String result = rh.sendPostRequest(UPLOAD_URL,data);
+
+
+                return result;
+            }
+        }
+
+        UploadImage ui = new UploadImage();
+        ui.execute(bitmap);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == buttonChoose) {
+            showFileChooser();
+        }
+        if(v == buttonUpload){
+            uploadImage();
+        }
     }
 }

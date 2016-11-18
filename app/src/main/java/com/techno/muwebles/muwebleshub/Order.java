@@ -7,29 +7,7 @@ import java.io.Serializable;
  * Created by FArias on 10/27/2016.
  */
 
-public class Product {
-
-    @SerializedName("name")
-    public String name;
-
-    @SerializedName("type")
-    public String type;
-
-    @SerializedName("price")
-    public String price;
-
-    @SerializedName("description")
-    public String description;
-
-    @SerializedName("email")
-    public String email;
-
-
-
-    @SerializedName("path")
-    public String path;
-
-    //sdfgdfsg
+public class Order {
     @SerializedName("id_sale")
     public String id_sale;
 
@@ -39,7 +17,8 @@ public class Product {
     @SerializedName("contact")
     public String contact;
 
-
+    @SerializedName("email")
+    public String email;
 
     @SerializedName("address")
     public String address;
@@ -58,5 +37,7 @@ public class Product {
 
     @SerializedName("pricetotal")
     public String pricetotal;
+
+
 
 }

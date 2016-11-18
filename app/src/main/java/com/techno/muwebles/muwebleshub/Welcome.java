@@ -162,6 +162,28 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
                 return true;
             }
+            case R.id.my_order:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                Intent i= new Intent(Welcome.this,MyOrder.class);
+                i.putExtra("email", getIntent().getStringExtra("email"));
+                startActivity(i);
+                return true;
+            }
+            case R.id.buyerorder:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                Intent j= new Intent(Welcome.this,BuyerOrder.class);
+                j.putExtra("email", getIntent().getStringExtra("email"));
+                startActivity(j);
+
+
+                return true;
+            }
 
             case R.id.menu_logout:{
                 if (item.isChecked())
@@ -213,11 +235,11 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
             @Override
             public void loadImage(String url, ImageView imageView) {
                 Picasso.with(Welcome.this)
-                      .load(url)
-                      .resize(400, 400)
-                      .placeholder(android.R.drawable.star_big_on)
-                      .error(android.R.drawable.stat_sys_download)
-                      .into(imageView);
+                        .load(url)
+                        .resize(400, 400)
+                        .placeholder(android.R.drawable.star_big_on)
+                        .error(android.R.drawable.stat_sys_download)
+                        .into(imageView);
 
                 // ImageLoader.getInstance().displayImage(url, imageView);
 
