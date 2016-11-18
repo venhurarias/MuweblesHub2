@@ -31,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText email, address, password, contact, first, last;
     private Button bsignup;
     private RequestQueue requestQueue;
-    private static final String URLACCOUNT = "http://192.168.254.105/webservice/accounts.php";
+    private static final String URLACCOUNT = "http://192.168.254.101/webservice/accounts.php";
     private StringRequest request;
 
     /**

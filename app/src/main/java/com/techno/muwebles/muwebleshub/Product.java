@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 public class Product {
     @SerializedName("item_id")
-    public int item_id;
+    public String item_id;
 
     @SerializedName("name")
     public String name;

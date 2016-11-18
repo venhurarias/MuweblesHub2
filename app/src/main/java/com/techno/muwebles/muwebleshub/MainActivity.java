@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password;
     private Button sign_in_register, signup;
     private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.254.105/webservice/user_control.php";
+    private static final String URL = "http://192.168.254.101/webservice/user_control.php";
     private StringRequest request;
 
 

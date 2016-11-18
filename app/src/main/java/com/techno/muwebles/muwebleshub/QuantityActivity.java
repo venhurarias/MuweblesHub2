@@ -41,7 +41,7 @@ public class QuantityActivity extends AppCompatActivity {
     TextView price, total, squantity;
     Button proceed;
     private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.254.105/webservice/show.php";
+    private static final String URL = "http://192.168.254.101/webservice/show.php";
 
 
     /**
@@ -62,7 +62,8 @@ public class QuantityActivity extends AppCompatActivity {
         total = (TextView) findViewById(R.id.total);
         squantity = (TextView) findViewById(R.id.squantity);
         String sprice=getIntent().getStringExtra("price");
-        final String item_id=getIntent().getStringExtra("item_id");
+        String semail=getIntent().getStringExtra("email");
+
         price.setText(sprice);
         double qnty = Double.valueOf(quantity.getText().toString());
         double prc = Double.valueOf(price.getText().toString());
@@ -127,7 +128,7 @@ public class QuantityActivity extends AppCompatActivity {
                             JSONArray students = response.getJSONArray("list");
                             for (int i = 0; i < students.length(); i++) {
                                 JSONObject student = students.getJSONObject(i);
-                                if(student.getString("email").equals("arias.ven@gmail.com")) {
+                                if(student.getString("email").equals(getIntent().getStringExtra("email"))) {
 
 
                                     final String contact = student.getString("contact");
@@ -138,7 +139,7 @@ public class QuantityActivity extends AppCompatActivity {
                                     Intent j = new Intent(getApplicationContext(),SaleConfirm.class);
                                     j.putExtra("total", total.getText().toString());
                                     j.putExtra("quantity", quantity.getText().toString());
-                                    j.putExtra("item_id",item_id);
+                                    j.putExtra("item_id",getIntent().getStringExtra("item_id"));
                                     j.putExtra("contact",contact);
                                     j.putExtra("email",email);
                                     j.putExtra("address",address);

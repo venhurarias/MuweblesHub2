@@ -24,7 +24,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         buy=(Button) findViewById(R.id.buy);
-        final String item_id=getIntent().getStringExtra("item_id");
+
         final String name=getIntent().getStringExtra("name");
         final String type=getIntent().getStringExtra("type");
         final String price=getIntent().getStringExtra("price");
@@ -54,7 +54,8 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),QuantityActivity.class);
                 i.putExtra("price", dPrice.getText().toString());
-                i.putExtra("item_id", item_id);
+                i.putExtra("item_id", getIntent().getStringExtra("item_id"));
+                i.putExtra("email", getIntent().getStringExtra("email"));
                 startActivity(i);
 
             }

@@ -126,7 +126,7 @@ public class NewItem extends AppCompatActivity {
         final String email=getIntent().getStringExtra("email");
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.254.105/webservice/items.php",
+        StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.254.101/webservice/items.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

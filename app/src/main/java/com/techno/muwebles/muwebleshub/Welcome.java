@@ -44,8 +44,8 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
 
     RequestQueue requestQueue;
-    String rownumberurl = "http://192.168.254.105/webservice/rownumberproduct.php";
-    String showUrl = "http://192.168.254.105/webservice/show.php";
+    String rownumberurl = "http://192.168.254.101/webservice/rownumberproduct.php";
+    String showUrl = "http://192.168.254.101/webservice/show.php";
     private StringRequest request;
     TextView result;
 
@@ -72,7 +72,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         ImageLoader.getInstance().init(UILConfig.config(Welcome.this));
 
         PostResponseAsyncTask taskRead= new PostResponseAsyncTask(Welcome.this, this);
-        taskRead.execute("http://192.168.254.105/webservice/product.php");
+        taskRead.execute("http://192.168.254.101/webservice/product.php");
 
 
 

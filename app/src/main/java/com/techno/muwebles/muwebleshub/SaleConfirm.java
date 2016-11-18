@@ -52,7 +52,7 @@ public class SaleConfirm extends AppCompatActivity  {
     private RequestQueue requestQueue;
     private RequestQueue requestQueue1;
     private Button yes, no;
-    private static final String URL1 = "http://192.168.254.105/webservice/sales.php";
+    private static final String URL1 = "http://192.168.254.101/webservice/sales.php";
     private StringRequest request;
     private StringRequest request1;
 
@@ -110,12 +110,12 @@ public class SaleConfirm extends AppCompatActivity  {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String,String> parameters = new HashMap<String, String>();
-                            parameters.put("item_id","asdf");
+                            parameters.put("item_id",getIntent().getStringExtra("item_id"));
                             parameters.put("contact",getIntent().getStringExtra("contact"));
-                            parameters.put("email","asdf");
-                            parameters.put("address","asdf");
-                            parameters.put("first","asdf");
-                            parameters.put("last","asdf");
+                            parameters.put("email",getIntent().getStringExtra("email"));
+                            parameters.put("address",getIntent().getStringExtra("address"));
+                            parameters.put("first",getIntent().getStringExtra("first"));
+                            parameters.put("last",getIntent().getStringExtra("last"));
                             parameters.put("number",getIntent().getStringExtra("quantity"));
                             parameters.put("pricetotal",getIntent().getStringExtra("total"));
                             return parameters;
