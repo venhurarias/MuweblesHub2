@@ -140,6 +140,9 @@ public class QuantityActivity extends AppCompatActivity {
                                     j.putExtra("total", total.getText().toString());
                                     j.putExtra("quantity", quantity.getText().toString());
                                     j.putExtra("item_id",getIntent().getStringExtra("item_id"));
+                                    j.putExtra("semail",getIntent().getStringExtra("semail"));
+                                    j.putExtra("path",getIntent().getStringExtra("path"));
+                                    j.putExtra("name",getIntent().getStringExtra("name"));
                                     j.putExtra("contact",contact);
                                     j.putExtra("email",email);
                                     j.putExtra("address",address);

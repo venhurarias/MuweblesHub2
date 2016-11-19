@@ -272,6 +272,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         in.putExtra("description", selectedProduct.description);
         in.putExtra("image", selectedProduct.path);
         in.putExtra("email", getIntent().getStringExtra("email"));
+        in.putExtra("semail", selectedProduct.email);
 
         startActivity(in);
     }

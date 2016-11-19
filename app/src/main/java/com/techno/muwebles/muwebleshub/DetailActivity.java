@@ -53,9 +53,12 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),QuantityActivity.class);
+                i.putExtra("name", dName.getText().toString());
                 i.putExtra("price", dPrice.getText().toString());
                 i.putExtra("item_id", getIntent().getStringExtra("item_id"));
+                i.putExtra("semail", getIntent().getStringExtra("semail"));
                 i.putExtra("email", getIntent().getStringExtra("email"));
+                i.putExtra("path", image);
                 startActivity(i);
 
             }

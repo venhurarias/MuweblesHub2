@@ -36,6 +36,9 @@ public class Product {
     @SerializedName("item_id")
     public String item_id;
 
+    @SerializedName("product")
+    public String product;
+
     @SerializedName("contact")
     public String contact;
 

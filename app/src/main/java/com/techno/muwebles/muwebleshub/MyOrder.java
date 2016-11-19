@@ -70,7 +70,7 @@ public class MyOrder  extends AppCompatActivity implements AsyncResponse, Adapte
             dict.addStringField(R.id.product, new StringExtractor<Product>() {
                 @Override
                 public String getStringValue(Product product, int position) {
-                    return product.item_id;
+                    return product.product;
                 }
             });
 
