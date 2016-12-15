@@ -41,7 +41,7 @@ public class QuantityActivity extends AppCompatActivity {
     TextView price, total, squantity;
     Button proceed;
     private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.254.101/webservice/show.php";
+    private static final String URL = "http://192.168.254.100/webservice/show.php";
 
 
     /**

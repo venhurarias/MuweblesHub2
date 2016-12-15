@@ -1,14 +1,18 @@
 package com.techno.muwebles.muwebleshub;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,9 +36,10 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private EditText email, password;
-    private Button sign_in_register, signup;
+    private TextView signup;
+    private ImageButton sign_in_register;
     private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.254.101/webservice/user_control.php";
+    private static final String URL = "http://192.168.254.100/webservice/user_control.php";
     private StringRequest request;
 
 
@@ -50,10 +55,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = (EditText) findViewById(R.id.showemail);
+       email = (EditText) findViewById(R.id.showemail);
+      Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/LemonMilk.ttf");
+
+        email.setTypeface(custom_font);
+        email.setText("Email Address                                            ");
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email.setText("");
+            }
+        });
         password = (EditText) findViewById(R.id.password);
-        sign_in_register = (Button) findViewById(R.id.sign_in_register);
-        signup=(Button) findViewById(R.id.signup);
+        password.setText("passwordpasswordpassword");
+        password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                password.setText("");
+            }
+        });
+
+        sign_in_register = (ImageButton) findViewById(R.id.sign_in_register);
+        signup=(TextView) findViewById(R.id.signup);
 
 
         requestQueue = Volley.newRequestQueue(this);
@@ -82,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                 String stremail = email.getText().toString();
                                 Intent i = new Intent(MainActivity.this,Welcome.class);
                                 i.putExtra("email",stremail);
+                                i.putExtra("product","http://192.168.254.100/webservice/product.php");
                                 startActivity(i);
                             }else{
                                 Toast.makeText(getApplicationContext(),"Error "+jsonObject.getString("error"),Toast.LENGTH_SHORT).show();

@@ -52,7 +52,7 @@ public class MyOrder  extends AppCompatActivity implements AsyncResponse, Adapte
         postData.put("email", getIntent().getStringExtra("email"));
 
         PostResponseAsyncTask taskRead= new PostResponseAsyncTask(this, postData, this);
-        taskRead.execute("http://192.168.254.101/webservice/orderbuyer.php");
+        taskRead.execute("http://192.168.254.100/webservice/orderbuyer.php");
     }
     @Override
         public void processFinish(String output) {

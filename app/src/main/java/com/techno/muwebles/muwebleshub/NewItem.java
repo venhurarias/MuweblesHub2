@@ -10,28 +10,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class NewItem extends AppCompatActivity implements View.OnClickListener {
+public class NewItem extends AppCompatActivity implements View.OnClickListener ,AdapterView.OnItemSelectedListener {
 
-    public static final String UPLOAD_URL = "http://192.168.254.101/webservice/items.php";
+    public static final String UPLOAD_URL = "http://192.168.254.100/webservice/items.php";
     public static final String UPLOAD_KEY = "image";
     public static final String TAG = "MY MESSAGE";
-    private EditText name, type, price, description;
+    private EditText name, price, description;
+    String type;
 
     private int PICK_IMAGE_REQUEST = 1;
+
 
     private Button buttonChoose;
     private Button buttonUpload;
 
     private ImageView imageView;
+    private Spinner typespinner;
+    private static final String[]paths = {"Sofa", "Chair", "Table", "Bed", "Decor"};
 
     private Bitmap bitmap;
 
@@ -46,13 +53,23 @@ public class NewItem extends AppCompatActivity implements View.OnClickListener {
         buttonChoose = (Button) findViewById(R.id.buttonChoose);
         buttonUpload = (Button) findViewById(R.id.buttonUpload);
         name = (EditText) findViewById(R.id.name);
-        type = (EditText) findViewById(R.id.type);
+
         price = (EditText) findViewById(R.id.price);
         description = (EditText) findViewById(R.id.description);
 
 
 
         imageView = (ImageView) findViewById(R.id.imageView);
+
+        typespinner = (Spinner)findViewById(R.id.type);
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(NewItem.this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typespinner.setAdapter(adapter);
+        typespinner.setOnItemSelectedListener(this);
+
+
 
 
         buttonUpload.setOnClickListener(this);
@@ -93,7 +110,7 @@ public class NewItem extends AppCompatActivity implements View.OnClickListener {
     private void uploadImage(){
         class UploadImage extends AsyncTask<Bitmap,Void,String>{
             String Sname= name.getText().toString();
-            String Stype= type.getText().toString();
+           String Stype= type;
             String Sprice= price.getText().toString();
             String Sdescription= description.getText().toString();
             final String rownumber=getIntent().getStringExtra("rownumber");
@@ -149,5 +166,32 @@ public class NewItem extends AppCompatActivity implements View.OnClickListener {
         if(v == buttonUpload){
             uploadImage();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                type="sofa";
+                break;
+            case 1:
+                type="chair";
+                break;
+            case 2:
+                type="table";
+                break;
+            case 3:
+                type="bed";
+                break;
+            case 4:
+                type="decors";
+                break;
+
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

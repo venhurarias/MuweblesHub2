@@ -52,7 +52,7 @@ public class SaleConfirm extends AppCompatActivity  {
     private RequestQueue requestQueue;
     private RequestQueue requestQueue1;
     private Button yes, no;
-    private static final String URL1 = "http://192.168.254.101/webservice/sales.php";
+    private static final String URL1 = "http://192.168.254.100/webservice/sales.php";
     private StringRequest request;
     private StringRequest request1;
 

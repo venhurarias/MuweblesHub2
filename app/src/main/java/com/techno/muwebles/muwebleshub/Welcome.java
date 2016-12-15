@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
@@ -44,10 +46,11 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
 
     RequestQueue requestQueue;
-    String rownumberurl = "http://192.168.254.101/webservice/rownumberproduct.php";
-    String showUrl = "http://192.168.254.101/webservice/show.php";
+    String rownumberurl = "http://192.168.254.100/webservice/rownumberproduct.php";
+    String showUrl = "http://192.168.254.100/webservice/show.php";
+    String product = "http://192.168.254.100/webservice/product.php";
     private StringRequest request;
-    TextView result;
+    TextView result, newproduct, logout, aboutus, sofa, chair, table, bed, decor;
 
     private ArrayList<Product> productList;
     private ListView lvProduct;
@@ -59,7 +62,63 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_activity);
 
+        newproduct=(TextView) findViewById(R.id.newproduct);
+        logout=(TextView) findViewById(R.id.logout);
+        aboutus=(TextView) findViewById(R.id.aboutus);
+        sofa=(TextView) findViewById(R.id.sofa);
+        chair=(TextView) findViewById(R.id.chair);
+        table=(TextView) findViewById(R.id.table);
+        bed=(TextView) findViewById(R.id.bed);
+        decor=(TextView) findViewById(R.id.decor);
+
         result = (TextView) findViewById(R.id.showemail);
+
+
+            product=getIntent().getStringExtra("product");
+
+
+
+        newproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                request = new StringRequest(Request.Method.POST, rownumberurl, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject= new JSONObject(response);
+
+
+                            final String strrow = jsonObject.getString("rownumber");
+                            Intent j = new Intent(getApplicationContext(),NewItem.class);
+                            String email=getIntent().getStringExtra("email");
+                            j.putExtra("email", email);
+                            j.putExtra("rownumber", strrow);
+                            startActivity(j);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                requestQueue.add(request);
+
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+            }
+        });
+
 
 
 
@@ -67,12 +126,67 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         final String email=getIntent().getStringExtra("email");
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ImageLoader.getInstance().init(UILConfig.config(Welcome.this));
 
-        PostResponseAsyncTask taskRead= new PostResponseAsyncTask(Welcome.this, this);
-        taskRead.execute("http://192.168.254.101/webservice/product.php");
+       final PostResponseAsyncTask taskRead= new PostResponseAsyncTask(Welcome.this, this);
+        taskRead.execute(product);
+        sofa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product="http://192.168.254.100/webservice/sofa.php";
+
+                Intent i = new Intent(Welcome.this,Welcome.class);
+                i.putExtra("product",product);
+                finish();
+                startActivity(i);
+            }
+        });
+        chair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product="http://192.168.254.100/webservice/chair.php";
+
+                Intent i = new Intent(Welcome.this,Welcome.class);
+                i.putExtra("product",product);
+                finish();
+                startActivity(i);
+            }
+        });
+        table.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product="http://192.168.254.100/webservice/table.php";
+
+                Intent i = new Intent(Welcome.this,Welcome.class);
+                i.putExtra("product",product);
+                finish();
+                startActivity(i);
+            }
+        });
+        bed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product="http://192.168.254.100/webservice/bed.php";
+
+                Intent i = new Intent(Welcome.this,Welcome.class);
+                i.putExtra("product",product);
+                finish();
+                startActivity(i);
+            }
+        });
+        decor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product="http://192.168.254.100/webservice/decor.php";
+
+                Intent i = new Intent(Welcome.this,Welcome.class);
+                i.putExtra("product",product);
+                finish();
+                startActivity(i);
+            }
+        });
 
 
 
@@ -131,33 +245,6 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
                 else
                     item.setChecked(true);
 
-                request = new StringRequest(Request.Method.POST, rownumberurl, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject= new JSONObject(response);
-
-
-                            final String strrow = jsonObject.getString("rownumber");
-                            Intent j = new Intent(getApplicationContext(),NewItem.class);
-                            String email=getIntent().getStringExtra("email");
-                            j.putExtra("email", email);
-                            j.putExtra("rownumber", strrow);
-                            startActivity(j);
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                requestQueue.add(request);
 
 
                 return true;
@@ -205,7 +292,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         productList = new JsonConverter<Product>().toArrayList(s, Product.class);
 
         BindDictionary<Product> dict = new BindDictionary<Product>();
-        dict.addStringField(R.id.tvName, new StringExtractor<Product>() {
+       /* dict.addStringField(R.id.tvName, new StringExtractor<Product>() {
             @Override
             public String getStringValue(Product product, int position) {
                 return product.name;
@@ -225,7 +312,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
                 return product.type;
             }
         });
-
+*/
         dict.addDynamicImageField(R.id.ivImage, new StringExtractor<Product>() {
             @Override
             public String getStringValue(Product product, int position) {
@@ -236,7 +323,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
             public void loadImage(String url, ImageView imageView) {
                 Picasso.with(Welcome.this)
                         .load(url)
-                        .resize(400, 400)
+                        .resize(400, 200)
                         .placeholder(android.R.drawable.star_big_on)
                         .error(android.R.drawable.stat_sys_download)
                         .into(imageView);

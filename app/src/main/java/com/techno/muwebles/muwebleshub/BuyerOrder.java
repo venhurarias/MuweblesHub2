@@ -52,7 +52,7 @@ public class BuyerOrder  extends AppCompatActivity implements AsyncResponse, Ada
         postData.put("selleremail", getIntent().getStringExtra("email"));
 
         PostResponseAsyncTask taskRead= new PostResponseAsyncTask(this, postData, this);
-        taskRead.execute("http://192.168.254.101/webservice/orderseller.php");
+        taskRead.execute("http://192.168.254.100/webservice/orderseller.php");
     }
     @Override
     public void processFinish(String output) {

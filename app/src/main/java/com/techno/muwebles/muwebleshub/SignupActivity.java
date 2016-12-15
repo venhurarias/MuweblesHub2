@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -29,9 +30,9 @@ import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
     private EditText email, address, password, contact, first, last;
-    private Button bsignup;
+    private ImageButton bsignup;
     private RequestQueue requestQueue;
-    private static final String URLACCOUNT = "http://192.168.254.101/webservice/accounts.php";
+    private static final String URLACCOUNT = "http://192.168.254.100/webservice/accounts.php";
     private StringRequest request;
 
     /**
@@ -51,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
         contact = (EditText) findViewById(R.id.contact);
         first = (EditText) findViewById(R.id.showemail);
         last = (EditText) findViewById(R.id.last);
-        bsignup = (Button) findViewById(R.id.bsignup);
+        bsignup = (ImageButton) findViewById(R.id.bsignup);
 
         requestQueue = Volley.newRequestQueue(this);
 

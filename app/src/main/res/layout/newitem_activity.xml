@@ -42,15 +42,17 @@
         android:id="@+id/textView10"
         android:textSize="18sp" />
 
-    <EditText
+
+    <Spinner
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
         android:layout_below="@+id/textView10"
         android:layout_alignLeft="@+id/textView10"
         android:layout_alignStart="@+id/textView10"
-        android:id="@+id/type" />
+        android:id="@+id/type"/>
 
     <TextView
         android:text="Price: Php"

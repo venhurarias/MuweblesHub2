@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,50 +11,61 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.techno.muwebles.muwebleshub.MainActivity"
-    android:background="#FAD7AD">
+    android:background="@drawable/login">
 
     <EditText
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/showemail"
         android:hint="Email"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="90dp"
+        android:layout_width="270dp"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/black"
+        android:background="@android:color/transparent"
+        android:textSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/showemail"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="0dp"
         android:id="@+id/password"
         android:hint="Password"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textSize="12sp"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/black"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/showemail"
+        android:layout_alignLeft="@+id/showemail"
+        android:layout_alignStart="@+id/showemail" />
 
-    <Button
-        android:text="Sign up"
+    <TextView
+        android:text= "NO ACCOUNT YET? SIGN UP HERE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sign_in_register"
-        android:layout_alignLeft="@+id/sign_in_register"
-        android:layout_alignStart="@+id/sign_in_register"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:id="@+id/signup" />
+        android:id="@+id/signup"
+        android:textColor="@android:color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp" />
 
-    <Button
-        android:text="sign in/ register"
+    <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/buttonlogin"
         android:id="@+id/sign_in_register"
+        android:paddingBottom="-10dp"
+        android:padding="-20dp"
+        android:paddingTop="-20dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
