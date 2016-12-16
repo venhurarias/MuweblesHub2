@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -8,101 +9,130 @@
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.techno.muwebles.muwebleshub.DetailActivity">
+    tools:context="com.techno.muwebles.muwebleshub.DetailActivity"
+   >
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Welcome, "
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/dName"
-        android:textSize="18sp" />
+        android:layout_toLeftOf="@+id/textView3"
+        android:layout_toStartOf="@+id/textView3"
+        android:id="@+id/textView5" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/imageButton4"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3"
+        android:layout_height="50dip" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/star_big_on"
         android:id="@+id/dImage"
-        android:layout_below="@+id/dDescription"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/imageButton4"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Type: "
-        android:layout_width="wrap_content"
+        android:text="TextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView14"
-        android:layout_below="@+id/dName"
+        android:id="@+id/dName"
+        android:textSize="18sp"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/dImage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18sp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
 
     <TextView
         android:text="Price: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView15"
-        android:layout_below="@+id/textView14"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dDescription"
-        android:layout_below="@+id/textView16"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp" />
-
-    <TextView
-        android:text="Description: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView16"
-        android:layout_below="@+id/dPrice"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp" />
+        android:textSize="14sp"
+        android:layout_below="@+id/dName"
+        android:layout_alignLeft="@+id/dName"
+        android:layout_alignStart="@+id/dName" />
 
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dPrice"
-        android:layout_below="@+id/dType"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_alignBottom="@+id/textView15"
         android:layout_toRightOf="@+id/textView15"
-        android:layout_toEndOf="@+id/textView15"
-        android:textSize="18sp" />
+        android:layout_toEndOf="@+id/textView15" />
+
+    <ImageButton
+        android:layout_width="210dip"
+        android:layout_height="50dip"
+        app:srcCompat="@drawable/buttonbuynow"
+        android:layout_below="@+id/dPrice"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/buy" />
+
+    <TextView
+        android:text="Type: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buy"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView6"
+        android:textSize="12sp" />
 
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dType"
-        android:layout_alignBaseline="@+id/textView14"
-        android:layout_alignBottom="@+id/textView14"
-        android:layout_toRightOf="@+id/textView14"
-        android:layout_toEndOf="@+id/textView14"
-        android:textSize="18sp" />
+        android:textSize="12sp"
+        android:layout_below="@+id/buy"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6" />
 
-    <Button
-        android:text="Buy This Product"
-        android:layout_width="wrap_content"
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buy"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/dImage"
-        android:layout_alignRight="@+id/textView16"
-        android:layout_alignEnd="@+id/textView16" />
+        android:id="@+id/dDescription"
+        android:textSize="12sp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3"
+        android:layout_marginBottom="50dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/bottom"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/dDescription"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:cropToPadding="false"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_height="70dp" />
+
 </RelativeLayout>
 </ScrollView>

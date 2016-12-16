@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/welcome">
 
@@ -11,43 +13,6 @@
         android:layout_marginBottom="84dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="welcome, "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textAllCaps="true"
-        android:textSize="14sp"
-        android:layout_alignLeft="@+id/showemail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-
-        android:layout_marginTop="93dip" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/showemail"
-        android:textSize="14sp"
-        android:layout_marginLeft="71dp"
-        android:layout_alignBaseline="@+id/textView"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="71dp" />
-
-    <TextView
-        android:text="FEATURED ITEMS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView2"
-        android:layout_marginTop="20dip"
-        android:layout_marginLeft="20dip"
-        android:textStyle="normal|bold" />
 
     <TextView
         android:text="Add New Product"
@@ -89,13 +54,73 @@
         android:layout_marginEnd="62dp" />
 
     <TextView
+        android:text="Tables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/table"
+        android:layout_marginLeft="12dp"
+        android:textColor="@android:color/black"
+        android:layout_alignBaseline="@+id/chair"
+        android:layout_alignBottom="@+id/chair"
+        android:layout_toRightOf="@+id/chair"
+        android:layout_toEndOf="@+id/chair" />
+
+    <TextView
+        android:text="Beds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bed"
+
+        android:layout_marginLeft="12dp"
+        android:textColor="@android:color/black"
+        android:layout_alignBaseline="@+id/table"
+        android:layout_alignBottom="@+id/table"
+        android:layout_toRightOf="@+id/table"
+        android:layout_toEndOf="@+id/table" />
+
+    <TextView
+        android:text="Decors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decor"
+        android:layout_marginLeft="12dp"
+        android:textColor="@android:color/black"
+        android:layout_alignBaseline="@+id/bed"
+        android:layout_alignBottom="@+id/bed"
+        android:layout_toRightOf="@+id/bed"
+        android:layout_toEndOf="@+id/bed" />
+
+    <TextView
+        android:text="Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Price"
+        android:layout_marginLeft="12dp"
+        android:layout_alignBaseline="@+id/decor"
+        android:layout_alignBottom="@+id/decor"
+        android:layout_toRightOf="@+id/decor"
+        android:layout_toEndOf="@+id/decor"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="FEATURED ITEMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/Price"
+        android:layout_alignLeft="@+id/newproduct"
+        android:layout_alignStart="@+id/newproduct" />
+
+    <TextView
         android:text="Sofas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="53dp"
         android:id="@+id/sofa"
         android:textColor="@android:color/black"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2" />
 
@@ -105,43 +130,58 @@
         android:layout_height="wrap_content"
         android:id="@+id/chair"
         android:textColor="@android:color/black"
+        android:layout_marginLeft="12dp"
         android:layout_alignBaseline="@+id/sofa"
         android:layout_alignBottom="@+id/sofa"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toRightOf="@+id/sofa"
+        android:layout_toEndOf="@+id/sofa"
+        android:layout_marginStart="10dp" />
 
     <TextView
-        android:text="Tables"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/chair"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2"
-        android:id="@+id/table"
-        android:textColor="@android:color/black" />
+        android:id="@+id/showemail"
+        android:textSize="14sp"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Beds"
+        android:text="welcome, "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/table"
-        android:layout_toRightOf="@+id/table"
-        android:layout_toEndOf="@+id/table"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp"
-        android:id="@+id/bed"
-        android:textColor="@android:color/black" />
+        android:id="@+id/textView"
+        android:textAllCaps="true"
+        android:textSize="14sp"
 
-    <TextView
-        android:text="Decors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/bed"
-        android:layout_alignLeft="@+id/logout"
-        android:layout_alignStart="@+id/logout"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:id="@+id/decor"
-        android:textColor="@android:color/black" />
+
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/showemail"
+        android:layout_toStartOf="@+id/showemail" />
+
+    <ImageButton
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        app:srcCompat="@android:drawable/ic_menu_search"
+        android:id="@+id/searchb"
+        android:layout_alignTop="@+id/search"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="35dip"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/search"
+        android:textSize="12sp"
+        android:hint="Search..."
+        android:textColorLink="@android:color/transparent"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/decor"
+        android:layout_toLeftOf="@+id/searchb"
+        android:layout_toStartOf="@+id/searchb" />
 
 </RelativeLayout>

@@ -23,8 +23,7 @@
             android:background="@android:color/transparent"
             android:layout_below="@+id/last"
             android:layout_alignLeft="@+id/last"
-            android:layout_alignStart="@+id/last"
-            android:hint="email" />
+            android:layout_alignStart="@+id/last" />
 
             <EditText
         android:layout_width="match_parent"
@@ -39,8 +38,7 @@
                 android:background="@android:color/transparent"
                 android:layout_below="@+id/contact"
                 android:layout_alignLeft="@+id/contact"
-                android:layout_alignStart="@+id/contact"
-                android:hint="address" />
+                android:layout_alignStart="@+id/contact" />
 
             <EditText
         android:layout_width="match_parent"
@@ -56,8 +54,7 @@
                 android:background="@android:color/transparent"
                 android:layout_below="@+id/showemail"
                 android:layout_alignLeft="@+id/showemail"
-                android:layout_alignStart="@+id/showemail"
-                android:hint="password" />
+                android:layout_alignStart="@+id/showemail" />
 
         <EditText
     android:layout_width="match_parent"
@@ -73,8 +70,7 @@
             android:background="@android:color/transparent"
             android:layout_below="@+id/password"
             android:layout_alignLeft="@+id/password"
-            android:layout_alignStart="@+id/password"
-            android:hint="contact" />
+            android:layout_alignStart="@+id/password" />
 
     <EditText
     android:layout_width="match_parent"
@@ -85,8 +81,7 @@
     android:id="@+id/last"
             android:layout_marginTop="24dp"
             android:layout_marginLeft="0dp"
-            android:hint="last"
-            android:textSize="14sp"
+        android:textSize="14sp"
 
             android:textStyle="normal|bold"
             android:textColor="@android:color/black"
@@ -109,8 +104,7 @@
             android:background="@android:color/transparent"
             android:textSize="14sp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:hint="first" />
+            android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="100dip"

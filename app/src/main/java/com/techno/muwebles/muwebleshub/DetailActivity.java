@@ -1,15 +1,12 @@
 package com.techno.muwebles.muwebleshub;
 
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.io.Serializable;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,13 +14,13 @@ public class DetailActivity extends AppCompatActivity {
 
     TextView dName, dType, dPrice, dDescription;
     ImageView dImage;
-    private Button buy;
+    private ImageButton buy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        buy=(Button) findViewById(R.id.buy);
+        buy=(ImageButton) findViewById(R.id.buy);
 
         final String name=getIntent().getStringExtra("name");
         final String type=getIntent().getStringExtra("type");
@@ -44,7 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         dDescription.setText(description);
         Picasso.with(DetailActivity.this)
                 .load(image)
-                .resize(400, 400)
+                .resize(450, 250)
                 .placeholder(android.R.drawable.star_big_on)
                 .error(android.R.drawable.stat_sys_download)
                 .into(dImage);

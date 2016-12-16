@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -33,8 +33,8 @@ public class NewItem extends AppCompatActivity implements View.OnClickListener ,
     private int PICK_IMAGE_REQUEST = 1;
 
 
-    private Button buttonChoose;
-    private Button buttonUpload;
+    private ImageButton buttonChoose;
+    private ImageButton buttonUpload;
 
     private ImageView imageView;
     private Spinner typespinner;
@@ -50,8 +50,8 @@ public class NewItem extends AppCompatActivity implements View.OnClickListener ,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newitem_activity);
 
-        buttonChoose = (Button) findViewById(R.id.buttonChoose);
-        buttonUpload = (Button) findViewById(R.id.buttonUpload);
+        buttonChoose = (ImageButton) findViewById(R.id.buttonChoose);
+        buttonUpload = (ImageButton) findViewById(R.id.buttonUpload);
         name = (EditText) findViewById(R.id.name);
 
         price = (EditText) findViewById(R.id.price);

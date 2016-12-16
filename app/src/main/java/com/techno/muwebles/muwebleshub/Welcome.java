@@ -1,4 +1,5 @@
 package com.techno.muwebles.muwebleshub;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,19 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.amigold.fundapter.interfaces.DynamicImageLoader;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,21 +34,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class Welcome extends AppCompatActivity implements AsyncResponse, AdapterView.OnItemClickListener {
 
 
     RequestQueue requestQueue;
+
     String rownumberurl = "http://192.168.254.100/webservice/rownumberproduct.php";
     String showUrl = "http://192.168.254.100/webservice/show.php";
-    String product = "http://192.168.254.100/webservice/product.php";
+    String product = "http://192.168.254.100/webservice/search.php";
     private StringRequest request;
     TextView result, newproduct, logout, aboutus, sofa, chair, table, bed, decor;
+    private EditText search;
+    ImageButton searchb;
 
     private ArrayList<Product> productList;
     private ListView lvProduct;
@@ -70,11 +69,17 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         table=(TextView) findViewById(R.id.table);
         bed=(TextView) findViewById(R.id.bed);
         decor=(TextView) findViewById(R.id.decor);
+        searchb=(ImageButton) findViewById(R.id.searchb);
+
 
         result = (TextView) findViewById(R.id.showemail);
+        search = (EditText)findViewById(R.id.search);
+
 
 
             product=getIntent().getStringExtra("product");
+
+
 
 
 
@@ -118,6 +123,13 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
             }
         });
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),AboutActivity.class));
+
+            }
+        });
 
 
 
@@ -129,9 +141,24 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ImageLoader.getInstance().init(UILConfig.config(Welcome.this));
+        HashMap<String, String> postData = new HashMap<String, String>();
+        postData.put("search",getIntent().getStringExtra("search"));
 
-       final PostResponseAsyncTask taskRead= new PostResponseAsyncTask(Welcome.this, this);
+       final PostResponseAsyncTask taskRead= new PostResponseAsyncTask(Welcome.this, postData, this);
         taskRead.execute(product);
+        searchb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Welcome.class));
+                Intent i = new Intent(Welcome.this,Welcome.class);
+                i.putExtra("search",search.getText().toString());
+                i.putExtra("product","http://192.168.254.100/webservice/search.php");
+                finish();
+                startActivity(i);
+
+            }
+        });
+
         sofa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +166,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
                 Intent i = new Intent(Welcome.this,Welcome.class);
                 i.putExtra("product",product);
+                i.putExtra("search",search.getText().toString());
                 finish();
                 startActivity(i);
             }
@@ -150,6 +178,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
                 Intent i = new Intent(Welcome.this,Welcome.class);
                 i.putExtra("product",product);
+                i.putExtra("search",search.getText().toString());
                 finish();
                 startActivity(i);
             }
@@ -161,6 +190,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
                 Intent i = new Intent(Welcome.this,Welcome.class);
                 i.putExtra("product",product);
+                i.putExtra("search",search.getText().toString());
                 finish();
                 startActivity(i);
             }
@@ -172,6 +202,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
                 Intent i = new Intent(Welcome.this,Welcome.class);
                 i.putExtra("product",product);
+                i.putExtra("search",search.getText().toString());
                 finish();
                 startActivity(i);
             }
@@ -183,6 +214,7 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
                 Intent i = new Intent(Welcome.this,Welcome.class);
                 i.putExtra("product",product);
+                i.putExtra("search",search.getText().toString());
                 finish();
                 startActivity(i);
             }
@@ -225,6 +257,10 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
             }
         });
         requestQueue.add(jsonObjectRequest);
+
+
+
+
 
 
 
@@ -333,11 +369,16 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
             }
         });
 
-        FunDapter<Product> adapter = new FunDapter<>(Welcome.this, productList, R.layout.layout_list, dict);
+        final FunDapter<Product> adapter = new FunDapter<>(Welcome.this, productList, R.layout.layout_list, dict);
+
+
 
         lvProduct = (ListView) findViewById(R.id.lvProduct);
         lvProduct.setAdapter(adapter);
         lvProduct.setOnItemClickListener(this);
+
+
+
 
 
 
@@ -363,4 +404,13 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
         startActivity(in);
     }
-}
+
+
+
+
+
+        }
+
+
+
+

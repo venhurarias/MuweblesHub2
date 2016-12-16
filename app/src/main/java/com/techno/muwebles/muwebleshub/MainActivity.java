@@ -3,13 +3,9 @@ package com.techno.muwebles.muwebleshub;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -106,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent i = new Intent(MainActivity.this,Welcome.class);
                                 i.putExtra("email",stremail);
                                 i.putExtra("product","http://192.168.254.100/webservice/product.php");
+                                i.putExtra("search","");
                                 startActivity(i);
                             }else{
                                 Toast.makeText(getApplicationContext(),"Error "+jsonObject.getString("error"),Toast.LENGTH_SHORT).show();
