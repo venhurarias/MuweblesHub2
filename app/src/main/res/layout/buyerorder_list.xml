@@ -6,113 +6,74 @@
 
 
     <TextView
-        android:text="Product: "
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView23"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView24"
-        android:textSize="18sp" />
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/productimage"
+        android:layout_toEndOf="@+id/productimage"
+        android:layout_marginTop="9dp"
+        android:id="@+id/product_name" />
 
-    <TextView
-        android:text="Quantity: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView25"
-        android:layout_below="@+id/textView24"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp" />
-
-    <TextView
-        android:text="Total: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView26"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView25"
+    <ImageView
+        app:srcCompat="@drawable/imageicon"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:id="@+id/productimage"
+        android:layout_height="75dp"
+        android:layout_width="175dp"
+        android:layout_alignTop="@+id/product_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ordernumber"
-        android:id="@+id/ordernumber"
-        android:layout_weight="1"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView23"
-        android:layout_toEndOf="@+id/textView23" />
+        android:layout_alignBottom="@+id/textView21"
+        android:layout_toRightOf="@+id/textView21"
+        android:layout_toEndOf="@+id/textView21"
+        android:id="@+id/saleid"
+        android:textSize="12sp" />
 
     <TextView
+        android:text="Submitted: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="product"
-        android:id="@+id/product"
-        android:textSize="18sp"
-        android:layout_below="@+id/ordernumber"
-        android:layout_toRightOf="@+id/textView24"
-        android:layout_toEndOf="@+id/textView24" />
+        android:layout_below="@+id/textView21"
+        android:layout_toRightOf="@+id/productimage"
+        android:layout_toEndOf="@+id/productimage"
+        android:id="@+id/textView38"
+        android:textSize="12sp" />
 
     <TextView
-        android:text="total"
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/totalprice"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView25"
-        android:layout_toRightOf="@+id/textView26"
-        android:layout_toEndOf="@+id/textView26" />
+        android:layout_below="@+id/textView21"
+        android:layout_toRightOf="@+id/textView38"
+        android:layout_toEndOf="@+id/textView38"
+        android:id="@+id/timeproduct"
+        android:textSize="12sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="quantity"
-        android:id="@+id/pquantity"
-        android:textSize="18sp"
-        android:layout_below="@+id/product"
-        android:layout_toRightOf="@+id/textView25"
-        android:layout_toEndOf="@+id/textView25" />
-
-    <TextView
-        android:text="Order #: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView23"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="====================="
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17"
-        android:textAlignment="center"
-        android:layout_below="@+id/textView22"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        app:srcCompat="@color/common_google_signin_btn_text_light_default"
+        android:id="@+id/imageView9"
+        android:layout_height="2dp"
+        android:layout_below="@+id/productimage"
+        android:layout_alignLeft="@+id/productimage"
+        android:layout_alignStart="@+id/productimage"
+        android:layout_marginTop="12dp" />
 
     <TextView
-        android:text="Buyer's Name: "
+        android:text="Item ID: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView22"
-        android:layout_below="@+id/textView26"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp" />
+        android:id="@+id/textView21"
+        android:textSize="12sp"
+        android:layout_below="@+id/product_name"
+        android:layout_toRightOf="@+id/productimage"
+        android:layout_toEndOf="@+id/productimage" />
 
-    <TextView
-        android:text="Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView22"
-        android:layout_toRightOf="@+id/textView22"
-        android:layout_toEndOf="@+id/textView22"
-        android:id="@+id/boname"
-        android:textSize="18sp" />
 </RelativeLayout>

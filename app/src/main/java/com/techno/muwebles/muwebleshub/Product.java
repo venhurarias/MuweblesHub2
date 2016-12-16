@@ -1,7 +1,6 @@
 package com.techno.muwebles.muwebleshub;
 
 import com.google.gson.annotations.SerializedName;
-import java.io.Serializable;
 
 /**
  * Created by FArias on 10/27/2016.
@@ -23,6 +22,12 @@ public class Product {
 
     @SerializedName("email")
     public String email;
+
+    @SerializedName("time")
+    public String time;
+
+
+
 
 
 
@@ -61,5 +66,8 @@ public class Product {
 
     @SerializedName("pricetotal")
     public String pricetotal;
+
+    @SerializedName("i_time")
+    public String i_time;
 
 }

@@ -1,18 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <Spinner
+
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_menu_sort_by_size"
+        android:spinnerMode="dropdown"
+        android:id="@+id/menu1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="30dp" />
 
     <TextView
-        android:text="Buyer's Order"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView20"
-        android:textStyle="normal|bold"
-        android:textSize="24sp" />
+        android:id="@+id/showemail"
+        android:textSize="14sp"
 
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/menu1"
+        android:layout_toStartOf="@+id/menu1"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp" />
+    <TextView
+        android:text="welcome, "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAllCaps="true"
+        android:textSize="14sp"
+
+
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/showemail"
+        android:layout_toStartOf="@+id/showemail" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/imageButton4"
+        android:layout_height="50dip"
+        android:layout_below="@+id/menu1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:text="Review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:id="@+id/textView12" />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/buyerorderlist" />
-</LinearLayout>
+        android:id="@+id/buyerorderlist"
+        android:layout_below="@+id/textView12"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="My Product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/imageButton4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+</RelativeLayout>

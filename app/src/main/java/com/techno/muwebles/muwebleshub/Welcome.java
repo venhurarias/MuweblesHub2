@@ -7,10 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.amigold.fundapter.BindDictionary;
@@ -38,7 +40,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Welcome extends AppCompatActivity implements AsyncResponse, AdapterView.OnItemClickListener {
+public class Welcome extends AppCompatActivity implements AsyncResponse, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
 
 
     RequestQueue requestQueue;
@@ -53,6 +55,8 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
     private ArrayList<Product> productList;
     private ListView lvProduct;
+    private Spinner typespinner;
+    private static final String[]paths = {"","My Orders", "My Product"};
 
 
 
@@ -74,6 +78,13 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
 
         result = (TextView) findViewById(R.id.showemail);
         search = (EditText)findViewById(R.id.search);
+        typespinner = (Spinner)findViewById(R.id.menu1);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(Welcome.this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typespinner.setAdapter(adapter1);
+        typespinner.setOnItemSelectedListener(this);
 
 
 
@@ -406,10 +417,37 @@ public class Welcome extends AppCompatActivity implements AsyncResponse, Adapter
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
 
+                break;
+            case 1:
+                Intent i = new Intent(getApplicationContext(),MyOrder.class);
+                String email=getIntent().getStringExtra("email");
+                i.putExtra("email", email);
+                startActivity(i);
+
+                break;
+            case 2:
+                Intent k = new Intent(getApplicationContext(),BuyerOrder.class);
+                String selleremail=getIntent().getStringExtra("email");
+                k.putExtra("email", selleremail);
+                startActivity(k);
+
+                break;
 
 
         }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+}
 
 
 

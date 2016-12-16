@@ -4,35 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.amigold.fundapter.interfaces.DynamicImageLoader;
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.kosalgeek.android.json.JsonConverter;
 import com.kosalgeek.genasync12.AsyncResponse;
 import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by FArias on 11/18/2016.
@@ -60,21 +46,21 @@ public class MyOrder  extends AppCompatActivity implements AsyncResponse, Adapte
             productList = new JsonConverter<Product>().toArrayList(output, Product.class);
 
             BindDictionary<Product> dict = new BindDictionary<Product>();
-            dict.addStringField(R.id.ordernumber, new StringExtractor<Product>() {
+            dict.addStringField(R.id.idsale, new StringExtractor<Product>() {
                 @Override
                 public String getStringValue(Product product, int position) {
                     return product.id_sale;
                 }
             });
 
-            dict.addStringField(R.id.product, new StringExtractor<Product>() {
+            dict.addStringField(R.id.productname, new StringExtractor<Product>() {
                 @Override
                 public String getStringValue(Product product, int position) {
                     return product.product;
                 }
             });
 
-            dict.addStringField(R.id.pquantity, new StringExtractor<Product>() {
+            dict.addStringField(R.id.orderquantity, new StringExtractor<Product>() {
                 @Override
                 public String getStringValue(Product product, int position) {
                     return product.number;
@@ -87,6 +73,32 @@ public class MyOrder  extends AppCompatActivity implements AsyncResponse, Adapte
                 return product.pricetotal;
             }
         });
+        dict.addStringField(R.id.time, new StringExtractor<Product>() {
+            @Override
+            public String getStringValue(Product product, int position) {
+                return product.time;
+            }
+        });
+        dict.addDynamicImageField(R.id.orderimage, new StringExtractor<Product>() {
+            @Override
+            public String getStringValue(Product product, int position) {
+                return product.path;
+            }
+        }, new DynamicImageLoader() {
+            @Override
+            public void loadImage(String url, ImageView imageView) {
+                Picasso.with(MyOrder.this)
+                        .load(url)
+                        .resize(400, 200)
+                        .placeholder(android.R.drawable.star_big_on)
+                        .error(android.R.drawable.stat_sys_download)
+                        .into(imageView);
+
+                // ImageLoader.getInstance().displayImage(url, imageView);
+
+            }
+        });
+
 
             FunDapter<Product> adapter = new FunDapter<>(MyOrder.this, productList, R.layout.table_order, dict);
 
