@@ -52,15 +52,15 @@
             android:layout_below="@+id/textView10"
             android:layout_alignLeft="@+id/textView10"
             android:layout_alignStart="@+id/textView10"
-            android:id="@+id/type"/>
+            android:id="@+id/menu"/>
 
         <TextView
             android:text="Price: Php"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/type"
-            android:layout_alignLeft="@+id/type"
-            android:layout_alignStart="@+id/type"
+            android:layout_below="@+id/menu"
+            android:layout_alignLeft="@+id/menu"
+            android:layout_alignStart="@+id/menu"
             android:id="@+id/textView11"
             android:textSize="18sp" />
 
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:layout_below="@+id/type"
+            android:layout_below="@+id/menu"
             android:layout_toRightOf="@+id/textView11"
             android:layout_toEndOf="@+id/textView11"
             android:layout_marginLeft="14dp"

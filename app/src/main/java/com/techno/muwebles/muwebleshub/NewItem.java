@@ -61,7 +61,7 @@ public class NewItem extends AppCompatActivity implements View.OnClickListener ,
 
         imageView = (ImageView) findViewById(R.id.imageView);
 
-        typespinner = (Spinner)findViewById(R.id.type);
+        typespinner = (Spinner)findViewById(R.id.menu);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(NewItem.this,
                 android.R.layout.simple_spinner_item,paths);
 

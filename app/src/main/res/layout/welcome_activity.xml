@@ -138,16 +138,6 @@
         android:layout_marginStart="10dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/showemail"
-        android:textSize="14sp"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
         android:text="welcome, "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -183,5 +173,26 @@
         android:layout_below="@+id/decor"
         android:layout_toLeftOf="@+id/searchb"
         android:layout_toStartOf="@+id/searchb" />
+
+    <Spinner
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_menu_sort_by_size"
+        android:spinnerMode="dropdown"
+        android:id="@+id/menu"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/showemail"
+        android:textSize="14sp"
+
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/menu"
+        android:layout_toStartOf="@+id/menu" />
 
 </RelativeLayout>
